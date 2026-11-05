@@ -131,7 +131,7 @@ def seed_if_empty():
 
     has_data = any(
         cursor.execute(f"SELECT 1 FROM {table} LIMIT 1").fetchone()
-        for table in ("conversations", "memories", "important_dates", "reflections")
+        for table in ("messages", "memories", "important_dates", "reflections")
     )
     if has_data:
         connection.close()
