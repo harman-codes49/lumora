@@ -3,6 +3,7 @@ from datetime import datetime
 from pathlib import Path
 
 from app.database.db import initialize_database
+from app.database.seed import seed_if_empty
 from app.database.models import get_conversations, get_important_dates, get_memories
 
 from app.ui.chat import render_chat
@@ -31,6 +32,7 @@ st.set_page_config(
 # =========================================================
 
 initialize_database()
+seed_if_empty()
 
 
 # =========================================================

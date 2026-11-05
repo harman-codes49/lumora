@@ -205,7 +205,7 @@ def delete_memory_dialog(memory):
 
                 full_path = BASE_DIR / str(
                     media_path
-                )
+                ).replace("\\", "/")
 
                 try:
 
@@ -477,7 +477,7 @@ def render_memories():
                     media_path = str(
                         file_path.relative_to(
                             BASE_DIR
-                        )
+                        ).as_posix()
                     )
 
 
@@ -683,7 +683,7 @@ def render_memories():
 
             full_path = BASE_DIR / str(
                 media_path
-            )
+            ).replace("\\", "/")
 
 
             if full_path.exists():

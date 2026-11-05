@@ -20,3 +20,9 @@ Main file: `app.py` · Python 3.11 · add the secret:
 ```toml
 GEMINI_API_KEY = "your-key"
 ```
+
+## Starter content
+
+A fresh deploy (empty database) is filled with sample conversations, memories,
+dates and reflections from `app/database/seed.py`. An existing database is never touched.
+Sample photos: Carli Jean, Alejandro Escamilla, Vee O and Christian Joudrey via Unsplash (Unsplash License).
