@@ -68,9 +68,13 @@ st.html(
 )
 
 
+# Button callbacks run before the script, so a click costs one rerun, not two.
 def go(page):
     st.session_state.page = page
-    st.rerun()
+
+
+def toggle_sidebar_pin():
+    st.session_state.sidebar_pinned = not st.session_state.sidebar_pinned
 
 
 # =========================================================
@@ -96,14 +100,13 @@ with st.sidebar:
 
         pinned = st.session_state.sidebar_pinned
 
-        if st.button(
+        st.button(
             "Auto-hide sidebar" if pinned else "Keep sidebar open",
             key="sidebar_pin",
             icon=":material/left_panel_close:" if pinned else ":material/push_pin:",
             help="Shrink to icons, expand on hover" if pinned else "Keep the sidebar open",
-        ):
-            st.session_state.sidebar_pinned = not pinned
-            st.rerun()
+            on_click=toggle_sidebar_pin,
+        )
 
         st.html(f"""
         {'' if pinned else '<div class="lx-rail-on"></div>'}
@@ -119,10 +122,10 @@ with st.sidebar:
         """)
 
         for page, label, icon in NAV_ITEMS:
-            if st.button(
-                label, key=f"sidebar_{page}", icon=icon, use_container_width=True
-            ):
-                go(page)
+            st.button(
+                label, key=f"sidebar_{page}", icon=icon,
+                use_container_width=True, on_click=go, args=(page,),
+            )
 
         st.html("""
         <div class="sidebar-quote">
@@ -184,15 +187,17 @@ def render_home():
 
             with st.container(horizontal=True, gap="small"):
 
-                if st.button(
+                st.button(
                     "Start a conversation  →",
                     key="home_start_chat",
                     type="primary",
-                ):
-                    go("chat")
+                    on_click=go, args=("chat",),
+                )
 
-                if st.button("Write a reflection", key="home_reflect"):
-                    go("reflection")
+                st.button(
+                    "Write a reflection", key="home_reflect",
+                    on_click=go, args=("reflection",),
+                )
 
         with right:
 
@@ -292,8 +297,7 @@ def render_home():
                 <div class="lx-card-text">{text}</div>
                 <div class="lx-card-link">Open <b>→</b></div>
                 """)
-                if st.button(aria, key=f"home_{page}"):
-                    go(page)
+                st.button(aria, key=f"home_{page}", on_click=go, args=(page,))
 
     # ---------------- QUOTE + FOOTER ----------------
 

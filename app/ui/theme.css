@@ -136,19 +136,19 @@
 
 /* every element rises in, staggered */
 .stMain .block-container > div > [data-testid="stVerticalBlock"] > * {
-    animation: lx-rise .9s var(--ease) both;
+    animation: lx-rise .45s var(--ease) both;
 }
 .stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(1) { animation-delay: .00s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(2) { animation-delay: .06s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(3) { animation-delay: .12s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(4) { animation-delay: .18s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(5) { animation-delay: .24s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(6) { animation-delay: .30s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(7) { animation-delay: .36s; }
-.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(n+8) { animation-delay: .42s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(2) { animation-delay: .025s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(3) { animation-delay: .05s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(4) { animation-delay: .075s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(5) { animation-delay: .10s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(6) { animation-delay: .125s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(7) { animation-delay: .15s; }
+.stMain .block-container > div > [data-testid="stVerticalBlock"] > *:nth-child(n+8) { animation-delay: .15s; }
 
 @keyframes lx-rise {
-    from { opacity: 0; transform: translate3d(0, 22px, 0); }
+    from { opacity: 0; transform: translate3d(0, 12px, 0); }
     to   { opacity: 1; transform: none; }
 }
 
@@ -600,7 +600,7 @@
    CHAT
    --------------------------------------------------------- */
 
-.stApp .chat-row { margin: 20px 0 !important; animation: lx-rise .6s var(--ease) both; }
+.stApp .chat-row { margin: 20px 0 !important; animation: lx-rise .35s var(--ease) both; }
 
 .stApp .chat-message-user {
     background: linear-gradient(140deg, #5B3680, var(--plum)) !important;
