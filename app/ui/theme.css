@@ -640,39 +640,54 @@
 .stApp .typing-indicator { color: var(--violet) !important; }
 
 /* ---------------------------------------------------------
-   SIDEBAR — velvet night
+   SIDEBAR — midnight plum, collapsible icon rail
+   Pinned: full width. Auto: 92px icon rail that expands
+   over the page on hover. ".lx-rail-on" is rendered by
+   app.py only in auto mode.
    --------------------------------------------------------- */
 
 [data-testid="stSidebar"] {
+    --sb-text: #F1E8F5;
+    --sb-muted: rgba(241, 232, 245, .62);
+    --sb-gold: #EBD3A3;
+    --sb-line: rgba(235, 211, 163, .16);
     background:
-        radial-gradient(120% 60% at 0% 0%, rgba(123, 79, 168, .35), transparent 60%),
-        radial-gradient(90% 50% at 100% 100%, rgba(201, 163, 107, .16), transparent 60%),
-        linear-gradient(180deg, #1D1228, #130B1B) !important;
-    border-right: 1px solid rgba(233, 211, 166, .12);
+        radial-gradient(130% 50% at 0% 0%, rgba(160, 104, 214, .50), transparent 62%),
+        radial-gradient(110% 40% at 100% 100%, rgba(226, 178, 118, .24), transparent 60%),
+        linear-gradient(180deg, #33194D 0%, #221137 52%, #180B28 100%) !important;
+    border-right: 1px solid var(--sb-line);
+    z-index: 100;
 }
 
+[data-testid="stSidebarContent"] { padding-left: 0 !important; padding-right: 0 !important; }
+[data-testid="stSidebarUserContent"] { padding: 1.4rem 16px 2rem !important; }
+
+.st-key-lx_nav { position: relative; gap: 6px; }
+
+/* brand */
 [data-testid="stSidebar"] .sidebar-brand {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    padding: 8px 6px 22px;
+    padding: 4px 4px 18px;
 }
 
 [data-testid="stSidebar"] .sidebar-logo {
-    width: 48px; height: 48px;
+    width: 52px; height: 52px;
+    flex: none;
     display: grid; place-items: center;
-    border-radius: 16px;
-    font-size: 22px;
-    background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.02));
-    box-shadow: inset 0 0 0 1px rgba(233, 211, 166, .45), 0 0 30px -4px rgba(201, 163, 107, .45);
+    border-radius: 17px;
+    font-size: 24px;
+    background: linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+    box-shadow: inset 0 0 0 1px rgba(235, 211, 163, .5), 0 0 30px -4px rgba(226, 178, 118, .5);
     animation: lx-breathe 6s ease-in-out infinite;
     margin-bottom: 10px;
 }
 
 @keyframes lx-breathe {
-    0%, 100% { box-shadow: inset 0 0 0 1px rgba(233,211,166,.45), 0 0 26px -6px rgba(201,163,107,.35); }
-    50%      { box-shadow: inset 0 0 0 1px rgba(233,211,166,.7),  0 0 40px -2px rgba(201,163,107,.6); }
+    0%, 100% { box-shadow: inset 0 0 0 1px rgba(235,211,163,.45), 0 0 24px -6px rgba(226,178,118,.35); }
+    50%      { box-shadow: inset 0 0 0 1px rgba(235,211,163,.75), 0 0 40px -2px rgba(226,178,118,.6); }
 }
 
 [data-testid="stSidebar"] .sidebar-title {
@@ -681,7 +696,8 @@
     font-weight: 500;
     letter-spacing: .02em;
     line-height: 1;
-    background: linear-gradient(100deg, #FFF6E6, var(--gold-hi) 50%, var(--gold));
+    white-space: nowrap;
+    background: linear-gradient(100deg, #FFF7E8, var(--sb-gold) 55%, #D9A86A);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -689,13 +705,14 @@
 [data-testid="stSidebar"] .sidebar-subtitle {
     font-size: 12px;
     line-height: 1.6;
-    color: rgba(237, 228, 241, .58);
+    color: var(--sb-muted);
+    min-width: 220px;
 }
 
 [data-testid="stSidebar"] .sidebar-divider {
     height: 1px;
-    margin: 0 0 14px;
-    background: linear-gradient(90deg, rgba(233,211,166,.45), transparent);
+    margin: 0 4px 12px;
+    background: linear-gradient(90deg, rgba(235,211,163,.5), transparent);
 }
 
 [data-testid="stSidebar"] .lx-nav-label {
@@ -703,72 +720,181 @@
     font-weight: 700;
     letter-spacing: .3em;
     text-transform: uppercase;
-    color: rgba(233, 211, 166, .55);
-    margin: 4px 0 4px 8px;
+    color: rgba(235, 211, 163, .6);
+    margin: 2px 0 4px 12px;
+    white-space: nowrap;
 }
 
+/* nav buttons */
 [data-testid="stSidebar"] .stButton > button {
+    position: relative;
     justify-content: flex-start;
-    min-height: 44px;
+    min-height: 46px;
     padding: 0 16px;
     border-radius: 14px !important;
     border: 1px solid transparent !important;
     background: transparent !important;
-    color: rgba(237, 228, 241, .78) !important;
+    color: var(--sb-muted) !important;
     box-shadow: none;
-    transition: background .35s var(--ease), color .35s, transform .45s var(--ease), padding .45s var(--ease);
+    overflow: hidden;
+    white-space: nowrap;
+    transition: background .35s var(--ease), color .35s, border-color .35s;
 }
 
 [data-testid="stSidebar"] .stButton > button::after {
-    background: linear-gradient(105deg, transparent 30%, rgba(233, 211, 166, .14) 50%, transparent 70%);
+    background: linear-gradient(105deg, transparent 30%, rgba(235, 211, 163, .14) 50%, transparent 70%);
 }
 
-[data-testid="stSidebar"] .stButton > button p { font-weight: 500; }
+[data-testid="stSidebar"] .stButton > button > div { justify-content: flex-start; width: 100%; gap: 14px; }
+[data-testid="stSidebar"] .stButton > button p { font-weight: 500; font-size: 14px; text-align: left; }
+
+[data-testid="stSidebar"] .stButton [data-testid="stIconMaterial"] {
+    font-size: 22px;
+    color: rgba(235, 211, 163, .75);
+    transition: color .3s, transform .45s var(--spring);
+}
 
 [data-testid="stSidebar"] .stButton > button:hover {
-    background: rgba(255, 255, 255, .06) !important;
-    color: #FFF6E6 !important;
-    padding-left: 22px;
+    background: rgba(255, 255, 255, .07) !important;
+    border-color: rgba(255, 255, 255, .06) !important;
+    color: var(--sb-text) !important;
     transform: none;
     box-shadow: none;
 }
+[data-testid="stSidebar"] .stButton > button:hover [data-testid="stIconMaterial"] {
+    color: var(--sb-gold);
+    transform: scale(1.12);
+}
 
-[data-testid="stSidebar"] .stButton > button:focus-visible { outline-color: var(--gold-hi); }
+[data-testid="stSidebar"] .stButton > button:focus-visible { outline: 2px solid var(--sb-gold); outline-offset: 2px; }
 
-/* active page pill (class set from app.py) */
-[data-testid="stSidebar"] .lx-active .stButton > button,
-[data-testid="stSidebar"] .lx-active.stButton > button {
-    background:
-        linear-gradient(90deg, rgba(201,163,107,.22), rgba(123,79,168,.16)) padding-box,
-        linear-gradient(90deg, rgba(233,211,166,.6), rgba(233,211,166,.06)) border-box !important;
-    color: #FFF6E6 !important;
-    box-shadow: 0 10px 30px -12px rgba(201, 163, 107, .5);
+/* active page (class swapped in from app.py) */
+[data-testid="stSidebar"] .lx-active .stButton > button {
+    background: linear-gradient(90deg, rgba(235,211,163,.20), rgba(185,138,217,.10)) !important;
+    border-color: rgba(235, 211, 163, .22) !important;
+    color: #FFF7E8 !important;
+    box-shadow: 0 10px 28px -14px rgba(226, 178, 118, .7);
+}
+[data-testid="stSidebar"] .lx-active .stButton > button::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 11px; bottom: 11px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: linear-gradient(var(--sb-gold), #D9A86A);
+    box-shadow: 0 0 12px rgba(235, 211, 163, .8);
+}
+[data-testid="stSidebar"] .lx-active .stButton [data-testid="stIconMaterial"] { color: var(--sb-gold); }
+
+/* pin / auto-hide toggle, top-right of the brand */
+[data-testid="stSidebar"] .st-key-sidebar_pin {
+    position: absolute;
+    top: 8px; right: 0;
+    width: auto !important;
+    z-index: 5;
+}
+[data-testid="stSidebar"] .st-key-sidebar_pin .stButton > button {
+    width: 38px; min-height: 38px; height: 38px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, .06) !important;
+    border: 1px solid var(--sb-line) !important;
+}
+[data-testid="stSidebar"] .st-key-sidebar_pin .stButton > button > div { justify-content: center; gap: 0; }
+[data-testid="stSidebar"] .st-key-sidebar_pin [data-testid="stIconMaterial"] { font-size: 20px; }
+[data-testid="stSidebar"] .st-key-sidebar_pin [data-testid="stMarkdownContainer"] {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);
 }
 
 [data-testid="stSidebar"] .sidebar-quote {
-    margin-top: 26px;
+    margin-top: 22px;
     padding: 20px 18px;
     border-radius: 18px;
     font-family: var(--display);
     font-size: 19px;
     font-style: italic;
     line-height: 1.45;
-    color: rgba(237, 228, 241, .82);
-    background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
-    border: 1px solid rgba(233, 211, 166, .18);
+    color: rgba(241, 232, 245, .85);
+    background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    border: 1px solid var(--sb-line);
+    min-width: 220px;
 }
+[data-testid="stSidebar"] .sidebar-quote b { font-style: normal; color: var(--sb-gold); font-weight: 600; }
 
-[data-testid="stSidebar"] .sidebar-quote b {
-    font-style: normal;
-    color: var(--gold-hi);
-    font-weight: 600;
-}
-
-[data-testid="stSidebar"] hr { border-color: rgba(233, 211, 166, .14); }
+[data-testid="stSidebar"] hr { border-color: var(--sb-line); }
 
 [data-testid="stSidebar"] [data-baseweb="input"] {
-    background: rgba(255,255,255,.06) !important;
-    border-color: rgba(233, 211, 166, .2) !important;
+    background: rgba(255,255,255,.07) !important;
+    border-color: rgba(235, 211, 163, .22) !important;
+}
+
+/* desktop: fixed widths + icon rail */
+@media (min-width: 769px) {
+
+    [data-testid="stSidebar"] {
+        width: 288px !important;
+        min-width: 288px !important;
+        max-width: 288px !important;
+        transition: width .5s var(--ease), min-width .5s var(--ease), max-width .5s var(--ease),
+                    margin-right .5s var(--ease), box-shadow .5s var(--ease);
+    }
+
+    /* our toggle replaces Streamlit's collapse controls on desktop */
+    [data-testid="stSidebarHeader"],
+    [data-testid="stSidebarCollapseButton"],
+    [data-testid="stExpandSidebarButton"],
+    [data-testid="stSidebarCollapsedControl"] { display: none !important; }
+
+    [data-testid="stSidebar"] [data-testid="stSidebarResizeHandle"],
+    [data-testid="stSidebar"] > div:last-child[class*="Resize"] { display: none; }
+
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"] {
+        width: 92px !important;
+        min-width: 92px !important;
+        max-width: 92px !important;
+        overflow: hidden;
+    }
+
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:hover {
+        width: 288px !important;
+        min-width: 288px !important;
+        max-width: 288px !important;
+        margin-right: -196px;
+        box-shadow: 40px 0 90px -30px rgba(24, 8, 40, .6);
+    }
+
+    /* things that only make sense when wide */
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"] :is(
+        .sidebar-title, .sidebar-subtitle, .lx-nav-label, .sidebar-quote,
+        .st-key-sidebar_pin, .stButton [data-testid="stMarkdownContainer"]
+    ) {
+        opacity: 0;
+        transition: opacity .2s ease;
+    }
+
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:hover :is(
+        .sidebar-title, .sidebar-subtitle, .lx-nav-label, .sidebar-quote,
+        .st-key-sidebar_pin, .stButton [data-testid="stMarkdownContainer"]
+    ) {
+        opacity: 1;
+        transition: opacity .35s ease .18s;
+    }
+
+    /* page-specific sidebar content (e.g. chat history) waits for hover */
+    .stApp:has(.lx-rail-on) [data-testid="stSidebarUserContent"] > div > [data-testid="stVerticalBlock"] > :not(:has(.st-key-lx_nav)) {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .2s ease;
+    }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:hover [data-testid="stSidebarUserContent"] > div > [data-testid="stVerticalBlock"] > :not(:has(.st-key-lx_nav)) {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity .35s ease .18s;
+    }
+
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .sidebar-logo { width: 46px; height: 46px; font-size: 21px; border-radius: 15px; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"] .sidebar-divider { opacity: .5; }
 }
 
 /* ---------------------------------------------------------
@@ -1193,9 +1319,6 @@
 .stApp .lx-stat-num, .stApp .insight-number, .stApp .lx-card-index,
 .stApp .lx-hero-title, .stApp h1, .stApp h2, .stApp h3 { font-variant-numeric: lining-nums; }
 
-/* sidebar items read left-to-right */
-[data-testid="stSidebar"] .stButton > button > div { justify-content: flex-start; width: 100%; }
-[data-testid="stSidebar"] .stButton > button p { text-align: left; }
 
 /* equal-height explore cards */
 .stApp .lx-card-title { min-height: 2.2em; display: flex; align-items: flex-end; }
@@ -1219,3 +1342,6 @@
 .stApp .space-card { padding: 22px 26px !important; margin-bottom: 10px; }
 
 .stApp .lx-note { padding: 18px 22px; margin-bottom: 22px; color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+
+/* the rail is desktop-only, so the pin toggle is too */
+@media (max-width: 768px) { [data-testid="stSidebar"] .st-key-sidebar_pin { display: none; } }

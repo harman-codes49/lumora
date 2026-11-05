@@ -78,39 +78,58 @@ def go(page):
 # =========================================================
 
 NAV_ITEMS = [
-    ("home", "🏠  Home"),
-    ("chat", "💬  Chat"),
-    ("memories", "📸  Memories"),
-    ("calendar", "📅  Calendar"),
-    ("reflection", "🌱  Reflection"),
-    ("search", "🔍  Search"),
-    ("space", "👤  Your Space"),
+    ("home", "Home", ":material/home:"),
+    ("chat", "Chat", ":material/forum:"),
+    ("memories", "Memories", ":material/photo_library:"),
+    ("calendar", "Calendar", ":material/calendar_month:"),
+    ("reflection", "Reflection", ":material/self_improvement:"),
+    ("search", "Search", ":material/search:"),
+    ("space", "Your Space", ":material/person:"),
 ]
+
+# Pinned = full sidebar. Unpinned = icon rail that expands on hover.
+st.session_state.setdefault("sidebar_pinned", True)
 
 with st.sidebar:
 
-    st.html(f"""
-    <div class="sidebar-brand">
-        <div class="sidebar-logo">🌿</div>
-        <div class="sidebar-title">Lumora</div>
-        <div class="sidebar-subtitle">
-            {USER_NAME}'s space to feel, talk and grow
+    with st.container(key="lx_nav"):
+
+        pinned = st.session_state.sidebar_pinned
+
+        if st.button(
+            "Auto-hide sidebar" if pinned else "Keep sidebar open",
+            key="sidebar_pin",
+            icon=":material/left_panel_close:" if pinned else ":material/push_pin:",
+            help="Shrink to icons, expand on hover" if pinned else "Keep the sidebar open",
+        ):
+            st.session_state.sidebar_pinned = not pinned
+            st.rerun()
+
+        st.html(f"""
+        {'' if pinned else '<div class="lx-rail-on"></div>'}
+        <div class="sidebar-brand">
+            <div class="sidebar-logo">🌿</div>
+            <div class="sidebar-title">Lumora</div>
+            <div class="sidebar-subtitle">
+                {USER_NAME}'s space to feel, talk and grow
+            </div>
         </div>
-    </div>
-    <div class="sidebar-divider"></div>
-    <div class="lx-nav-label">Navigate</div>
-    """)
+        <div class="sidebar-divider"></div>
+        <div class="lx-nav-label">Navigate</div>
+        """)
 
-    for page, label in NAV_ITEMS:
-        if st.button(label, key=f"sidebar_{page}", use_container_width=True):
-            go(page)
+        for page, label, icon in NAV_ITEMS:
+            if st.button(
+                label, key=f"sidebar_{page}", icon=icon, use_container_width=True
+            ):
+                go(page)
 
-    st.html("""
-    <div class="sidebar-quote">
-        <b>A small step</b><br>
-        every day still counts. 💜
-    </div>
-    """)
+        st.html("""
+        <div class="sidebar-quote">
+            <b>A small step</b><br>
+            every day still counts. 💜
+        </div>
+        """)
 
 
 # =========================================================

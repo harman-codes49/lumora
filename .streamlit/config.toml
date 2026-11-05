@@ -14,8 +14,8 @@ headingFont = "'Cormorant Garamond':https://fonts.googleapis.com/css2?family=Cor
 chartCategoricalColors = ["#7B4FA8", "#C9A36B", "#D58BA8", "#5E8C9A", "#B98AD9"]
 
 [theme.sidebar]
-backgroundColor = "#170E20"
-secondaryBackgroundColor = "#241631"
+backgroundColor = "#221137"
+secondaryBackgroundColor = "#33194D"
 textColor = "#EDE4F1"
 borderColor = "#3A2A48"
 primaryColor = "#E2C48F"
