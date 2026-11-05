@@ -171,23 +171,13 @@ def render_relationship_support():
     # -----------------------------------------------------
 
     st.html("""
-    <div style="
-        margin-bottom: 24px;
-    ">
+    <div class="insights-header">
 
-        <div style="
-            font-family: Georgia, serif;
-            font-size: 32px;
-            color: #30234f;
-            margin-bottom: 6px;
-        ">
+        <div class="insights-title">
             Relationship Support ♡
         </div>
 
-        <div style="
-            font-size: 14px;
-            color: #817493;
-        ">
+        <div class="insights-subtitle">
             A calm space to think through communication,
             boundaries and difficult situations.
         </div>
@@ -200,16 +190,7 @@ def render_relationship_support():
     # -----------------------------------------------------
 
     st.html("""
-    <div style="
-        background: #f3e8f7;
-        border: 1px solid #eadcf0;
-        border-radius: 14px;
-        padding: 16px 18px;
-        margin-bottom: 20px;
-        color: #5d4d70;
-        font-size: 14px;
-        line-height: 1.6;
-    ">
+    <div class="lx-glass lx-note">
         Lumora won't automatically take sides.
         It will help you look at the situation from
         different perspectives and think about what
@@ -272,13 +253,7 @@ def render_relationship_support():
     # -----------------------------------------------------
 
     st.html("""
-    <div style="
-        font-size: 14px;
-        font-weight: 600;
-        color: #4c3c62;
-        margin-top: 8px;
-        margin-bottom: 8px;
-    ">
+    <div class="lx-eyebrow" style="margin: 14px 0 6px;">
         Quick starting points
     </div>
     """)

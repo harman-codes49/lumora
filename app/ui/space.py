@@ -16,7 +16,7 @@ from app.database.models import (
 # CSS
 # =========================================================
 
-st.html("""
+_SPACE_CSS = ("""
 <style>
 
 .space-header {
@@ -351,6 +351,8 @@ def delete_date_dialog(date_id, title):
 # =========================================================
 
 def render_space():
+    st.html(_SPACE_CSS)
+
 
     st.html("""
     <div class="space-header">

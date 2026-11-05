@@ -1217,3 +1217,5 @@
 }
 
 .stApp .space-card { padding: 22px 26px !important; margin-bottom: 10px; }
+
+.stApp .lx-note { padding: 18px 22px; margin-bottom: 22px; color: var(--muted); font-size: 14.5px; line-height: 1.7; }

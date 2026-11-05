@@ -36,7 +36,7 @@ if "pending_date_suggestions" not in st.session_state:
 # CHAT CSS
 # =========================================================
 
-st.html("""
+_CHAT_CSS = ("""
 <style>
 
 /* =====================================================
@@ -859,6 +859,8 @@ def render_message(message):
 # =========================================================
 
 def render_chat():
+    st.html(_CHAT_CSS)
+
 
     # -----------------------------------------------------
     # MAKE SURE CONVERSATION EXISTS
