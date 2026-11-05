@@ -641,7 +641,7 @@
 
 /* ---------------------------------------------------------
    SIDEBAR — midnight plum, collapsible icon rail
-   Pinned: full width. Auto: 92px icon rail that expands
+   Pinned: full width. Auto: 104px icon rail that expands
    over the page on hover. ".lx-rail-on" is rendered by
    app.py only in auto mode.
    --------------------------------------------------------- */
@@ -850,9 +850,9 @@
     [data-testid="stSidebar"] > div:last-child[class*="Resize"] { display: none; }
 
     .stApp:has(.lx-rail-on) [data-testid="stSidebar"] {
-        width: 92px !important;
-        min-width: 92px !important;
-        max-width: 92px !important;
+        width: 104px !important;
+        min-width: 104px !important;
+        max-width: 104px !important;
         overflow: hidden;
     }
 
@@ -860,7 +860,7 @@
         width: 288px !important;
         min-width: 288px !important;
         max-width: 288px !important;
-        margin-right: -196px;
+        margin-right: -184px;
         box-shadow: 40px 0 90px -30px rgba(24, 8, 40, .6);
     }
 
@@ -893,7 +893,28 @@
         transition: opacity .35s ease .18s;
     }
 
-    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .sidebar-logo { width: 46px; height: 46px; font-size: 21px; border-radius: 15px; }
+    /* collapsed rail: centred square tiles */
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) [data-testid="stSidebarUserContent"] { padding-left: 8px !important; padding-right: 8px !important; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .sidebar-brand { align-items: center; padding-left: 0; padding-right: 0; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .sidebar-logo { width: 54px; height: 54px; font-size: 25px; border-radius: 18px; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .sidebar-divider { width: 36px; margin: 0 auto 12px; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .st-key-sidebar_pin { visibility: hidden; pointer-events: none; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .st-key-lx_nav .stButton > button {
+        width: 60px !important;
+        min-width: 60px;
+        height: 56px;
+        min-height: 56px;
+        margin: 0 auto;
+        padding: 0 !important;
+        display: flex;
+        justify-content: center;
+        border-radius: 18px !important;
+    }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .st-key-lx_nav .stButton > button > div { justify-content: center; gap: 0; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .stButton [data-testid="stMarkdownContainer"] { max-width: 0; overflow: hidden; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .stButton [data-testid="stIconMaterial"] { font-size: 26px; }
+    .stApp:has(.lx-rail-on) [data-testid="stSidebar"]:not(:hover) .lx-active .stButton > button::before { top: 14px; bottom: 14px; }
+    [data-testid="stSidebar"] .st-key-lx_nav .stButton > button { transition: width .45s var(--ease), background .35s var(--ease), color .35s, border-color .35s; }
     .stApp:has(.lx-rail-on) [data-testid="stSidebar"] .sidebar-divider { opacity: .5; }
 }
 
